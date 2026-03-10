@@ -2,6 +2,7 @@ services:
   - type: web
     name: ai-app
     runtime: python
+    pythonVersion: "3.12.8"
     plan: free                          # Render free tier
     region: oregon                      # us-west-2 — closest free region
     buildCommand: pip install -r requirements.txt
