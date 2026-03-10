@@ -2,15 +2,14 @@ services:
   - type: web
     name: ai-app
     runtime: python
-    pythonVersion: "3.12.8"
-    plan: free                          # Render free tier
-    region: oregon                      # us-west-2 — closest free region
+    plan: free
+    region: oregon
     buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
     healthCheckPath: /
     envVars:
       - key: ANTHROPIC_API_KEY
-        sync: false                     # Render will prompt you to enter this securely
+        sync: false
       - key: MODEL
         value: claude-haiku-4-5
       - key: MAX_TOKENS
